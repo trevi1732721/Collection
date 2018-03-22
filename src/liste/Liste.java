@@ -5,10 +5,11 @@ package liste;
  */
 public interface Liste {
    public void add(int index,Object objet);
-    public void set(int index,Object objet);
-    public Object get(int index);
-    public void remove(int index);
-    public void clear();
-    public int size();
+   public void add(Object objet);
+   public void set(int index,Object objet);
+   public Object get(int index);
+   public void remove(int index);
+   public void clear();
+   public int size();
 
 }

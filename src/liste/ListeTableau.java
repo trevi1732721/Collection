@@ -43,7 +43,7 @@ public class ListeTableau implements Liste{
         return taille;
     }
     public void tooSmall(){
-        if(liste[liste.length] != null){
+        if(liste.length == taille){
         Object tableau[]= new Object[liste.length*2];
         for(int i=0; i<=liste.length;i++){
             tableau[i]=liste[i];
