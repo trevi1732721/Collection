@@ -3,13 +3,13 @@ package liste;
 /**
  * Created by treVi1732721 on 2018-03-19.
  */
-public class ListeTableau implements Liste{
+public class ListeTableau<T> implements Liste<T>{
 
-    protected Object liste[] = new Object[5];
+    protected T liste[] =(T[]) new Object[5];
     protected int index;
     protected int taille = 0;
 
-    public void add(int index,Object objet){
+    public void add(int index,T objet){
         tooSmall();
         for(int i = liste.length; i>index ;i--){
             liste[i] = liste[i+1];
@@ -17,15 +17,15 @@ public class ListeTableau implements Liste{
         liste[index]=objet;
         taille++;
     }
-    public void add(Object objet) {
+    public void add(T objet) {
         tooSmall();
         liste[taille+1]=objet;
         taille++;
     }
-    public void set(int index,Object objet){
+    public void set(int index,T objet){
         liste[index] = objet;
     }
-    public Object get(int index){
+    public T get(int index){
         return liste[index];
     }
     public void remove(int index){
@@ -36,7 +36,7 @@ public class ListeTableau implements Liste{
         }
     }
     public void clear(){
-        liste = new Object[5];
+        liste = (T[]) new Object[5];
         taille=0;
     }
     public int size(){
@@ -44,11 +44,11 @@ public class ListeTableau implements Liste{
     }
     public void tooSmall(){
         if(liste.length == taille){
-        Object tableau[]= new Object[liste.length*2];
+        T tableau[]= (T[])new Object[liste.length*2];
         for(int i=0; i<=liste.length;i++){
             tableau[i]=liste[i];
         }
-        liste = new Object[tableau.length];
+        liste = (T[]) new Object[tableau.length];
         for(int i=0; i<=liste.length;i++){
             liste[i]=tableau[i];
         }

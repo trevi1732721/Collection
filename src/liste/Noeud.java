@@ -1,11 +1,11 @@
-package liste.linkedList;
+package liste;
 
 /**
  * Created by treVi1732721 on 2018-03-19.
  */
-public class noeud {
+public class Noeud {
     protected Object object;
-    protected noeud next;
+    protected Noeud next;
 
     public Object getObject() {
         return object;
@@ -15,11 +15,11 @@ public class noeud {
         this.object = object;
     }
 
-    public noeud getNext() {
+    public Noeud getNext() {
         return next;
     }
 
-    public void setNext(noeud nextObject) {
+    public void setNext(Noeud nextObject) {
         this.next = nextObject;
     }
 }
