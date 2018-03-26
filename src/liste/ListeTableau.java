@@ -7,11 +7,11 @@ public class ListeTableau<T> implements Liste<T>{
 
     protected T liste[] =(T[]) new Object[5];
     protected int index;
-    protected int taille = 0;
+    protected int taille = -1;
 
     public void add(int index,T objet){
         tooSmall();
-        for(int i = liste.length; i>index ;i--){
+        for(int i = liste.length-1; i>index ;i--){
             liste[i] = liste[i+1];
         }
         liste[index]=objet;
@@ -19,7 +19,7 @@ public class ListeTableau<T> implements Liste<T>{
     }
     public void add(T objet) {
         tooSmall();
-        liste[taille+1]=objet;
+        liste[taille+1] = objet;
         taille++;
     }
     public void set(int index,T objet){
@@ -42,6 +42,7 @@ public class ListeTableau<T> implements Liste<T>{
     public int size(){
         return taille;
     }
+
     public void tooSmall(){
         if(liste.length == taille){
         T tableau[]= (T[])new Object[liste.length*2];
@@ -54,5 +55,4 @@ public class ListeTableau<T> implements Liste<T>{
         }
     }
     }
-
 }
