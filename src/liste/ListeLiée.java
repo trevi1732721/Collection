@@ -4,57 +4,82 @@ package liste;
  * Created by treVi1732721 on 2018-03-19.
  */
 public class ListeLiée<T> implements Liste<T> {
-    private Noeud debut;
+    private Noeud debut = null;
     private Noeud fin;
     private int taille;
 
-    public void add(T objet){
-        if(debut.getObject()== null){
-            debut.setObject(objet);
-            debut.setNext(null);
-            debut = fin;
+    public void add(T objet) {
+        if (taille == 0) {
+            Noeud nouveau = new Noeud();
+            nouveau.setObject(objet);
+            debut = nouveau;
+            fin = debut;
             taille++;
-        }else{
-           Noeud nouveau = new Noeud();
-           index(taille-1).setNext((Noeud) objet);
-           nouveau.setObject(objet);
-           nouveau.setNext(fin.getNext());
-           fin = nouveau;
-           fin.setObject(nouveau.getNext());
-           taille++;
+        } else {
+            Noeud suite = new Noeud();
+            Noeud nouveauFin = new Noeud();
+            suite.setObject(fin.getObject());
+            suite.setNext(nouveauFin);
+            nouveauFin.setObject(objet);
+            fin = nouveauFin;
+            index(taille - 2).setNext(suite);
+            taille++;
         }
     }
-    public void add(int index,T objet){
-         Noeud nouveau = new Noeud();
-         nouveau.setObject(objet);
-         nouveau.setNext(index(index-1).getNext());
-         index(index-1).setNext(nouveau);
-         taille++;
 
+    public void add(int index, T objet) {
+        if (index == 0) {
+            Noeud nouveau = new Noeud();
+            nouveau.setObject(objet);
+            debut = nouveau;
+            fin = debut;
+            taille++;
+        } else {
+            Noeud suite = new Noeud();
+            Noeud nouveauFin = new Noeud();
+            suite.setObject(fin.getObject());
+            suite.setNext(nouveauFin);
+            nouveauFin.setObject(objet);
+            index(index).setObject(nouveauFin.getObject());
+            index(index).setNext(nouveauFin);
+            index(taille - 2).setNext(suite);
+            taille++;
+        }
     }
-    public void set(int index,T objet){
+
+    public void set(int index, T objet) {
         index(index).setObject(objet);
     }
-    public T get(int index){
-        return(T) index(index).getObject();
+
+    public T get(int index) {
+        return (T) (index(index).getObject());
     }
-    public void remove(int index){
-        index(index-1).setNext(index(index+1));
+
+    public void remove(int index) {
+        index(index - 1).setNext(index(index + 1));
         taille--;
-        }
-    public void clear(){
-        debut= null;
-        taille =0;
     }
-    public int size(){
+
+    public void clear() {
+        debut.setNext(null);
+        debut.setObject(null);
+        taille = 0;
+    }
+
+    public int size() {
         return taille;
     }
-    public Noeud index(int index){
+
+    public Noeud index(int index) {
         Noeud position;
         position = debut;
-        for (int i=0; 1<index; i++){
-            position = position.getNext();
+        if (index == 0) {
+            return position;
+        }else{
+            for (int i = 0; i < index; i++) {
+                position = position.getNext();
+            }
+            return position;
         }
-        return position;
     }
 }
